@@ -1,0 +1,35 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 1rem 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+
+  h1 {
+    a {
+      color: var(--primary);
+    }
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-around;
+    gap: 1rem;
+
+    a {
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      font-size: 1.125rem;
+      line-height: 100%;
+      letter-spacing: -0.125rem;
+    }
+  }
+}
+
+main {
+  padding: 2rem;
+  width: 100%;
+}
