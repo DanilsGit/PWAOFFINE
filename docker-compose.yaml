@@ -4,7 +4,7 @@ services:
       context: ./sellingOffline
       dockerfile: Dockerfile
     ports:
-      - "3000:8080"
+      - "5000:8080"
     environment:
       - NODE_ENV=production
     depends_on:
@@ -15,9 +15,11 @@ services:
       context: ./sellingOffline-backend
       dockerfile: Dockerfile
     ports:
-      - "8080:8080"
+      - "9000:8080"
     env_file:
       - ./sellingOffline-backend/.env
+    volumes:
+      - ./sellingOffline-backend/public:/app/public
     depends_on:
       - db
 
@@ -31,3 +33,7 @@ services:
       POSTGRES_DB: selling_offline
     volumes:
       - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    
+volumes:
+  postgres_data:
