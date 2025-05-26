@@ -1,0 +1,40 @@
+services:
+  frontend:
+    build:
+      context: ./sellingOffline
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4200:8080"
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./sellingOffline:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ./sellingOffline-backend
+      dockerfile: Dockerfile.dev
+    ports:
+      - "8080:8080"
+    env_file:
+      - ./sellingOffline-backend/.env
+      - ./sellingOffline-backend/.env.dev
+    depends_on:
+      - db
+
+  db:
+    image: postgres:17
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: selling_offline
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

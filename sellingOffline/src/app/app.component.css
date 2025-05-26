@@ -28,7 +28,17 @@ header {
     }
   }
 }
-
+.offline-warning{
+  width: 100%;
+  background-color: var(--warning);
+  color: var(--white);
+  p {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    text-align: center;
+  }
+}
 main {
   padding: 2rem;
   width: 100%;

@@ -1,1 +1,13 @@
-<p>contact works!</p>
+<form (submit)="onSubmit($event)">
+  <input type="email" placeholder="Author Email" required name="email" />
+  <input type="text" placeholder="Subject" required name="subject" />
+  <textarea placeholder="Message" required name="message"></textarea>
+
+  @if (!loading) {
+  <button>Send</button>
+  } @else {
+  <button disabled>Sending...</button>
+  }
+
+  <input type="hidden" name="_captcha" value="false" />
+</form>

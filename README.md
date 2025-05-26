@@ -2,7 +2,9 @@
 
 This project was developed with Angular 19 and ExpressJS
 
-## Frontend production server
+## Frontend
+
+### Production server
 
 To start a production server with PWA and caching functionalities, run:
 
@@ -10,6 +12,15 @@ To start a production server with PWA and caching functionalities, run:
 cd ./sellingOffline
 npm run start:prod
 ```
+
+### Development server
+
+To start a development server, run:
+
+```bash
+npm run start:dev
+```
+
 
 ## Backend production server
 

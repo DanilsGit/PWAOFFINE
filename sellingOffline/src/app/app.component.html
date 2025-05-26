@@ -1,11 +1,16 @@
 <header>
-  <h1><a routerLink="/">Shopping (off/on)line</a></h1>
+  <h1><a routerLink="/">Selling (off/on)line</a></h1>
   <nav>
     <a routerLink="/">Home</a>
     <a routerLink="/create-product">Create</a>
     <a routerLink="/contact">Contact</a>
   </nav>
 </header>
+@if(!isOnline) {
+<div class="offline-warning">
+  <p>You are currently offline. Some features may not be available.</p>
+</div>
+}
 <main>
   <router-outlet />
 </main>

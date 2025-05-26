@@ -1,0 +1,16 @@
+<ul>
+  @for(product of products; track product.id) {
+  <li>
+    <img
+      [src]="product.offline ? product.image : `${backendUrl}/${product.image}`"
+      alt="imagen del producto"
+    />
+    <div class="product-info">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.description }}</p>
+      <p>${{ product.price }}</p>
+      <p>{{ product.category }}</p>
+    </div>
+  </li>
+  }
+</ul>

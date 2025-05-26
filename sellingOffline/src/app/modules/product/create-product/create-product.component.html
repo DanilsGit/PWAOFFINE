@@ -21,7 +21,7 @@
       } @else {
       <div class="no-image">
         <mat-icon class="icon">add_photo_alternate</mat-icon>
-        <span>Imagen</span>
+        <span>Image</span>
       </div>
       }
     </label>
@@ -39,8 +39,25 @@
 
   <mat-form-field appearance="outline" class="form-item">
     <mat-label>Category</mat-label>
-    <input matInput formControlName="category" required />
+    <mat-select formControlName="category" required>
+      <mat-option value="electronics">Electronics</mat-option>
+      <mat-option value="clothing">Clothing</mat-option>
+      <mat-option value="food">Food</mat-option>
+      <mat-option value="books">Books</mat-option>
+      <mat-option value="other">Other</mat-option>
+    </mat-select>
   </mat-form-field>
 
   <button mat-button type="submit" class="submit-button">Save</button>
 </form>
+
+@if(pendingProducts.length > 0) {
+<section class="pending_products">
+  <h2>Pending Products</h2>
+  <p>
+    Your products are pending due to no internet connection. They will be
+    synchronized when you're back online.
+  </p>
+  <app-product-list [products]="pendingProducts" />
+</section>
+}

@@ -21,7 +21,13 @@
       "submit";
   }
 }
-
+.form-item {
+  textarea {
+    resize: none;
+    width: 100%;
+    height: 100%;
+  }
+}
 .form-item:nth-child(1) {
   grid-area: name;
 }
@@ -30,6 +36,7 @@
     width: 100%;
     height: 100%;
     border-radius: 1rem;
+    cursor: pointer;
   }
   grid-area: image;
   border-radius: 1rem;
