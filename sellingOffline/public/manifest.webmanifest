@@ -1,6 +1,6 @@
 {
-  "name": "sellingOffline",
-  "short_name": "sellingOffline",
+  "name": "Selling (off/on)line",
+  "short_name": "(off/on)line",
   "display": "standalone",
   "scope": "./",
   "start_url": "./",
