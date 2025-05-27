@@ -4,7 +4,7 @@ services:
       context: ./sellingOffline
       dockerfile: Dockerfile.dev
     ports:
-      - "4200:8080"
+      - "4200:4200"
     environment:
       - NODE_ENV=development
     volumes:
@@ -18,7 +18,10 @@ services:
       context: ./sellingOffline-backend
       dockerfile: Dockerfile.dev
     ports:
-      - "8080:8080"
+      - "8000:8000"
+    volumes:
+      - ./sellingOffline-backend:/app
+      - /app/node_modules
     env_file:
       - ./sellingOffline-backend/.env
       - ./sellingOffline-backend/.env.dev
