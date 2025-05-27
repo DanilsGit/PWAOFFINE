@@ -15,6 +15,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { ProductService } from '../../../core/services/product.service';
 import { IProduct } from '../../../core/interfaces/IProduct';
 import { ProductListComponent } from '../../../shared/product-list/product-list.component';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   imports: [
     FormsModule,
@@ -33,6 +34,8 @@ import { ProductListComponent } from '../../../shared/product-list/product-list.
 export class CreateProductComponent {
   private _formBuilder = inject(FormBuilder);
   private _products = inject(ProductService);
+  private _toast = inject(ToastrService);
+  loadingSubmit = false;
   pendingProducts: IProduct[] = [];
   form: FormGroup;
 
@@ -75,17 +78,26 @@ export class CreateProductComponent {
   }
 
   onSubmit() {
+    if (this.loadingSubmit) return;
+
     if (this.form.invalid) {
       // Handle form submission error
-      console.error('Form is invalid');
+      this._toast.error('Please fill out the form correctly.');
       return;
     }
+
+    this.loadingSubmit = true;
+
     this._products.postProduct(this.form.value).subscribe({
       next: () => {
         this.form.reset();
+        this._toast.success('Product created successfully!');
+        this.loadingSubmit = false;
       },
       error: (error) => {
         console.error('Error creating product:', error);
+        this._toast.error('Error creating product. Please try again later.');
+        this.loadingSubmit = false;
       },
     });
   }

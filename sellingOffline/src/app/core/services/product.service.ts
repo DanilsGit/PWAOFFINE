@@ -4,6 +4,7 @@ import { IProduct } from '../interfaces/IProduct';
 import { IndexedDBService } from './indexed-db.service';
 import { ConnectionService } from './connection.service';
 import { Observable } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,7 @@ export class ProductService {
   private _http = inject(HttpClient);
   private _indexedDB = inject(IndexedDBService);
   private _connection = inject(ConnectionService);
+  private _toast = inject(ToastrService);
 
   connection$ = this._connection.isOnline$();
 
@@ -41,14 +43,17 @@ export class ProductService {
     }
 
     console.log('Syncing IndexedDB data with the server');
+    this._toast.info('Syncing data with the server...');
     this.postBatchProducts(data).subscribe({
       next: (response) => {
         console.log('Data synced successfully:', response);
         this._pendingProducts.set([]);
         this._indexedDB.deleteAllData();
+        this._toast.success('Data synced successfully!');
       },
       error: (error) => {
         console.error('Error syncing data with the server:', error);
+        this._toast.error('Error syncing data with the server.');
       },
     });
   }

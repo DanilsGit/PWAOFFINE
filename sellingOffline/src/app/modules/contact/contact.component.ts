@@ -1,5 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { ContactService } from '../../core/services/contact.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-contact',
@@ -9,6 +10,7 @@ import { ContactService } from '../../core/services/contact.service';
 })
 export class ContactComponent {
   private _contact = inject(ContactService);
+  private _toast = inject(ToastrService);
   loading = false;
 
   onSubmit(e: Event) {
@@ -20,13 +22,14 @@ export class ContactComponent {
 
     this._contact.postContactForm(formData).subscribe({
       next: (response) => {
-        console.log('Form submitted successfully', response);
         form.reset();
         this.loading = false;
+        this._toast.success('Form submitted successfully!');
       },
       error: (error) => {
         if (error.status === 200) {
-          console.log('Form submitted successfully');
+          this._toast.success('Form submitted successfully!');
+
           form.reset();
           this.loading = false;
         }
